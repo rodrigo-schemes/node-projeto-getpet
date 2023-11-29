@@ -1,0 +1,444 @@
+{
+  "info": {
+    "_postman_id": "663390af-0a70-4e94-ade0-2a23759933a2",
+    "name": "Get A Pet",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "8790832"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "users/register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseJson = pm.response.json();\r",
+                  "var body = responseJson;\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"TOKEN\", body.token);\r",
+                  "pm.collectionVariables.set(\"USER_ID\", body.userId);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Caio Ricardo Rocha\",\r\n    \"email\": \"caio_rocha@outershoes.com.br\",\r\n    \"phone\": \"(11)984134910\",\r\n    \"password\": \"123\",\r\n    \"confirmpassword\": \"123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL_GETPET}}/users/register",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["users", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseJson = pm.response.json();\r",
+                  "var body = responseJson;\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"TOKEN\", body.token);\r",
+                  "pm.collectionVariables.set(\"USER_ID\", body.userId);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"caio_rocha@outershoes.com.br\",\r\n    \"password\" : \"123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL_GETPET}}/users/login",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["users", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users/checkuser",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseJson = pm.response.json();\r",
+                  "var body = responseJson;\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"USER_ID\", body._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/users/checkuser",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["users", "checkuser"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users/:id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/users/{{USER_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["users", "{{USER_ID}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users/edit/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Rodrigo Schemes Bitencourt",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "rodrigoschemes@yahoo.com.br",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "(11)984134910",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ],
+              "options": {
+                "formdata": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL_GETPET}}/users/edit/{{USER_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["users", "edit", "{{USER_ID}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pets",
+      "item": [
+        {
+          "name": "pets/create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseJson = pm.response.json();\r",
+                  "var body = responseJson;\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"PET_ID\", body.newPet._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Pet",
+                  "type": "text"
+                },
+                {
+                  "key": "age",
+                  "value": "10",
+                  "type": "text"
+                },
+                {
+                  "key": "weight",
+                  "value": "100",
+                  "type": "text"
+                },
+                {
+                  "key": "color",
+                  "value": "black",
+                  "type": "text"
+                },
+                {
+                  "key": "available",
+                  "value": "true",
+                  "type": "text"
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/rodrigo.bitencourt/Downloads/curso_node-main/curso_node-main/15_GETAPET/pets/labra1.jpg",
+                    "/C:/Users/rodrigo.bitencourt/Downloads/curso_node-main/curso_node-main/15_GETAPET/pets/labra2.jpg"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/create",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "create"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/mypets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/mypets",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "mypets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/myadoptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/myadoptions",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "myadoptions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/:id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/{{PET_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "{{PET_ID}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/{{PET_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "{{PET_ID}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Edit Name",
+                  "type": "text"
+                },
+                {
+                  "key": "age",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "weight",
+                  "value": "2",
+                  "type": "text"
+                },
+                {
+                  "key": "color",
+                  "value": "blue",
+                  "type": "text"
+                },
+                {
+                  "key": "available",
+                  "value": "false",
+                  "type": "text"
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/rodrigo.bitencourt/Downloads/labra2.jpg",
+                    "/C:/Users/rodrigo.bitencourt/Downloads/labra1.jpg"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/{{PET_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "{{PET_ID}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/schedule/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/schedule/{{PET_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "schedule", "{{PET_ID}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pets/conclude/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{URL_GETPET}}/pets/conclude/{{PET_ID}}",
+              "host": ["{{URL_GETPET}}"],
+              "path": ["pets", "conclude", "{{PET_ID}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{TOKEN}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "URL_GETPET",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "TOKEN",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "USER_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "PET_ID",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
